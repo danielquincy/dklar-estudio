@@ -9,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/logo.png">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -61,6 +64,27 @@
             background-color: #1a1f27;
             background-image: radial-gradient(#2f3847 1px, transparent 1px);
             background-size: 32px 32px;
+        }
+        /* Franja de logos en paleta del sitio: monocromo corporativo, hover accent */
+        .tech-logo-img {
+            filter: brightness(0) invert(1);
+            opacity: 0.65;
+            transition: opacity 0.25s ease, filter 0.25s ease;
+        }
+        .tech-logo:hover .tech-logo-img {
+            opacity: 1;
+            filter: brightness(0) invert(1) sepia(1) saturate(8) hue-rotate(165deg);
+        }
+        /* Carrusel infinito de logos */
+        @keyframes tech-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .tech-scroll-track {
+            animation: tech-scroll 40s linear infinite;
+        }
+        .tech-scroll-track:hover {
+            animation-play-state: paused;
         }
     </style>
 </head>
@@ -263,54 +287,52 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <!-- Tech 1 -->
-                <div class="bg-corporate-900 p-8 rounded-xl border border-corporate-800 hover:border-accent-500 transition-all duration-300 flex flex-col items-center justify-center text-center group">
-                    <i data-lucide="cloud" class="w-12 h-12 text-corporate-400 group-hover:text-accent-400 mb-4 transition-colors"></i>
-                    <h4 class="text-lg font-bold text-white">Cloud Hosting</h4>
-                    <p class="text-sm text-corporate-400 mt-2">Servidores Dedicados y VPS</p>
+            <!-- Dos filas de logos en estilo monocromo (paleta del sitio), con scroll continuo -->
+            <div class="overflow-hidden">
+                <!-- Fila 1: scroll hacia la izquierda -->
+                <div class="tech-scroll-track flex items-center gap-14 md:gap-20 py-8 w-max">
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="PostgreSQL"><img src="https://cdn.simpleicons.org/postgresql/FFFFFF" alt="PostgreSQL" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="JavaScript"><img src="https://cdn.simpleicons.org/javascript/FFFFFF" alt="JavaScript" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Let's Encrypt"><img src="https://cdn.simpleicons.org/letsencrypt/FFFFFF" alt="Let's Encrypt" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Google Analytics"><img src="https://cdn.simpleicons.org/googleanalytics/FFFFFF" alt="Google Analytics" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Gmail"><img src="https://cdn.simpleicons.org/gmail/FFFFFF" alt="Gmail" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Meta"><img src="https://cdn.simpleicons.org/meta/FFFFFF" alt="Meta" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Docker"><img src="https://cdn.simpleicons.org/docker/FFFFFF" alt="Docker" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="WordPress"><img src="https://cdn.simpleicons.org/wordpress/FFFFFF" alt="WordPress" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="MySQL"><img src="https://cdn.simpleicons.org/mysql/FFFFFF" alt="MySQL" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <!-- Duplicado para scroll infinito -->
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="PostgreSQL"><img src="https://cdn.simpleicons.org/postgresql/FFFFFF" alt="PostgreSQL" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="JavaScript"><img src="https://cdn.simpleicons.org/javascript/FFFFFF" alt="JavaScript" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Let's Encrypt"><img src="https://cdn.simpleicons.org/letsencrypt/FFFFFF" alt="Let's Encrypt" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Google Analytics"><img src="https://cdn.simpleicons.org/googleanalytics/FFFFFF" alt="Google Analytics" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Gmail"><img src="https://cdn.simpleicons.org/gmail/FFFFFF" alt="Gmail" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Meta"><img src="https://cdn.simpleicons.org/meta/FFFFFF" alt="Meta" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Docker"><img src="https://cdn.simpleicons.org/docker/FFFFFF" alt="Docker" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="WordPress"><img src="https://cdn.simpleicons.org/wordpress/FFFFFF" alt="WordPress" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="MySQL"><img src="https://cdn.simpleicons.org/mysql/FFFFFF" alt="MySQL" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
                 </div>
-                <!-- Tech 2 -->
-                <div class="bg-corporate-900 p-8 rounded-xl border border-corporate-800 hover:border-accent-500 transition-all duration-300 flex flex-col items-center justify-center text-center group">
-                    <i data-lucide="database" class="w-12 h-12 text-corporate-400 group-hover:text-accent-400 mb-4 transition-colors"></i>
-                    <h4 class="text-lg font-bold text-white">Gestión de Datos</h4>
-                    <p class="text-sm text-corporate-400 mt-2">Bases de datos optimizadas</p>
-                </div>
-                <!-- Tech 3 -->
-                <div class="bg-corporate-900 p-8 rounded-xl border border-corporate-800 hover:border-accent-500 transition-all duration-300 flex flex-col items-center justify-center text-center group">
-                    <i data-lucide="code-2" class="w-12 h-12 text-corporate-400 group-hover:text-accent-400 mb-4 transition-colors"></i>
-                    <h4 class="text-lg font-bold text-white">Desarrollo Web</h4>
-                    <p class="text-sm text-corporate-400 mt-2">Frameworks Modernos (JS/PHP)</p>
-                </div>
-                <!-- Tech 4 -->
-                <div class="bg-corporate-900 p-8 rounded-xl border border-corporate-800 hover:border-accent-500 transition-all duration-300 flex flex-col items-center justify-center text-center group">
-                    <i data-lucide="lock" class="w-12 h-12 text-corporate-400 group-hover:text-accent-400 mb-4 transition-colors"></i>
-                    <h4 class="text-lg font-bold text-white">Seguridad SSL</h4>
-                    <p class="text-sm text-corporate-400 mt-2">Encriptación de extremo a extremo</p>
-                </div>
-                <!-- Tech 5 -->
-                <div class="bg-corporate-900 p-8 rounded-xl border border-corporate-800 hover:border-accent-500 transition-all duration-300 flex flex-col items-center justify-center text-center group">
-                    <i data-lucide="line-chart" class="w-12 h-12 text-corporate-400 group-hover:text-accent-400 mb-4 transition-colors"></i>
-                    <h4 class="text-lg font-bold text-white">SEO Analytics</h4>
-                    <p class="text-sm text-corporate-400 mt-2">Métricas y Posicionamiento</p>
-                </div>
-                <!-- Tech 6 -->
-                <div class="bg-corporate-900 p-8 rounded-xl border border-corporate-800 hover:border-accent-500 transition-all duration-300 flex flex-col items-center justify-center text-center group">
-                    <i data-lucide="mail-check" class="w-12 h-12 text-corporate-400 group-hover:text-accent-400 mb-4 transition-colors"></i>
-                    <h4 class="text-lg font-bold text-white">Correos Corporativos</h4>
-                    <p class="text-sm text-corporate-400 mt-2">Infraestructura Antispam</p>
-                </div>
-                <!-- Tech 7 -->
-                <div class="bg-corporate-900 p-8 rounded-xl border border-corporate-800 hover:border-accent-500 transition-all duration-300 flex flex-col items-center justify-center text-center group">
-                    <i data-lucide="share-2" class="w-12 h-12 text-corporate-400 group-hover:text-accent-400 mb-4 transition-colors"></i>
-                    <h4 class="text-lg font-bold text-white">Ads & RRSS</h4>
-                    <p class="text-sm text-corporate-400 mt-2">Integración de APIs publicitarias</p>
-                </div>
-                <!-- Tech 8 -->
-                <div class="bg-corporate-900 p-8 rounded-xl border border-corporate-800 hover:border-accent-500 transition-all duration-300 flex flex-col items-center justify-center text-center group">
-                    <i data-lucide="layers" class="w-12 h-12 text-corporate-400 group-hover:text-accent-400 mb-4 transition-colors"></i>
-                    <h4 class="text-lg font-bold text-white">Arquitectura Escalable</h4>
-                    <p class="text-sm text-corporate-400 mt-2">Sistemas modulares</p>
+            </div>
+            <div class="overflow-hidden">
+                <!-- Fila 2: scroll hacia la derecha -->
+                <div class="tech-scroll-track flex items-center gap-14 md:gap-20 py-8 w-max" style="animation-direction: reverse;">
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="MySQL"><img src="https://cdn.simpleicons.org/mysql/FFFFFF" alt="MySQL" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="WordPress"><img src="https://cdn.simpleicons.org/wordpress/FFFFFF" alt="WordPress" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Docker"><img src="https://cdn.simpleicons.org/docker/FFFFFF" alt="Docker" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Meta"><img src="https://cdn.simpleicons.org/meta/FFFFFF" alt="Meta" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Gmail"><img src="https://cdn.simpleicons.org/gmail/FFFFFF" alt="Gmail" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Google Analytics"><img src="https://cdn.simpleicons.org/googleanalytics/FFFFFF" alt="Google Analytics" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Let's Encrypt"><img src="https://cdn.simpleicons.org/letsencrypt/FFFFFF" alt="Let's Encrypt" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="JavaScript"><img src="https://cdn.simpleicons.org/javascript/FFFFFF" alt="JavaScript" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="PostgreSQL"><img src="https://cdn.simpleicons.org/postgresql/FFFFFF" alt="PostgreSQL" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="MySQL"><img src="https://cdn.simpleicons.org/mysql/FFFFFF" alt="MySQL" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="WordPress"><img src="https://cdn.simpleicons.org/wordpress/FFFFFF" alt="WordPress" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Docker"><img src="https://cdn.simpleicons.org/docker/FFFFFF" alt="Docker" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Meta"><img src="https://cdn.simpleicons.org/meta/FFFFFF" alt="Meta" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Gmail"><img src="https://cdn.simpleicons.org/gmail/FFFFFF" alt="Gmail" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Google Analytics"><img src="https://cdn.simpleicons.org/googleanalytics/FFFFFF" alt="Google Analytics" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="Let's Encrypt"><img src="https://cdn.simpleicons.org/letsencrypt/FFFFFF" alt="Let's Encrypt" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="JavaScript"><img src="https://cdn.simpleicons.org/javascript/FFFFFF" alt="JavaScript" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
+                    <div class="tech-logo flex-shrink-0 flex items-center justify-center" title="PostgreSQL"><img src="https://cdn.simpleicons.org/postgresql/FFFFFF" alt="PostgreSQL" class="tech-logo-img h-8 w-8 md:h-10 md:w-10 object-contain" width="40" height="40"></div>
                 </div>
             </div>
         </div>
@@ -378,6 +400,23 @@
                         "Tener un solo partner tecnológico que gestione nuestro sitio web, infraestructura en la nube y correos corporativos ha optimizado nuestros procesos enormemente. Un equipo sumamente profesional."
                     </p>
                 </div>
+
+                <!-- Testimonio 4 - Reset Nicaragua -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow relative">
+                    <i data-lucide="quote" class="absolute top-8 right-8 w-10 h-10 text-corporate-100"></i>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-corporate-600 text-white rounded-full flex items-center justify-center font-bold">
+                            RN
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Reset Nicaragua</h4>
+                            <p class="text-sm text-gray-500">Organización</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic leading-relaxed relative z-10">
+                        "Confiamos en Dklar Estudio para nuestra presencia digital. Profesionalismo, disponibilidad y resultados que marcan la diferencia."
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -426,7 +465,11 @@
                         <form id="contactForm" class="space-y-6" action="https://formsubmit.co/amoretty010292@gmail.com" method="POST">
                             <input type="hidden" name="_subject" value="Nueva solicitud de asesoría - Dklar Estudio">
                             <input type="hidden" name="_template" value="box">
-                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" id="formNextUrl" value="">
+                            <!-- reCAPTCHA activado por FormSubmit (no usar _captcha=false) -->
+                            <div class="hidden" aria-hidden="true">
+                                <input type="text" name="_honey" tabindex="-1" autocomplete="off">
+                            </div>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div>
                                     <label for="nombre" class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
@@ -539,156 +582,6 @@
     </button>
 
     <!-- Scripts para funcionalidad básica -->
-    <script>
-        // Inicializar iconos
-        lucide.createIcons();
-
-        // Manejo del menú móvil
-        const btn = document.getElementById('mobile-menu-button');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // Cerrar menú móvil al hacer click en un enlace
-        menu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-            });
-        });
-
-        // Efecto visual de Navbar y Botón Volver Arriba al hacer scroll
-        const navbar = document.getElementById('navbar');
-        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-        
-        window.addEventListener('scroll', () => {
-            // Navbar
-            if (window.scrollY > 10) {
-                navbar.classList.add('shadow-sm');
-            } else {
-                navbar.classList.remove('shadow-sm');
-            }
-
-            // Scroll to Top Button
-            if (window.scrollY > 400) {
-                scrollToTopBtn.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
-                scrollToTopBtn.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
-            } else {
-                scrollToTopBtn.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
-                scrollToTopBtn.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
-            }
-        });
-
-        // Envío de alerta al recibir una visita (correo a amoretty010292@gmail.com)
-        (function() {
-            var formData = new FormData();
-            formData.append('_subject', 'Nueva visita al sitio - Dklar Estudio');
-            formData.append('_captcha', 'false');
-            formData.append('Tipo', 'Visita al sitio web');
-            formData.append('Fecha', new Date().toLocaleString('es-ES', { dateStyle: 'full', timeStyle: 'medium' }));
-            formData.append('URL', window.location.href);
-            formData.append('User-Agent', navigator.userAgent);
-            fetch('https://formsubmit.co/ajax/amoretty010292@gmail.com', {
-                method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            }).catch(function() {});
-        })();
-
-        // Manejo del formulario de contacto con FormSubmit (AJAX para mantener mensaje en página)
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            var form = this;
-            var btnSubmit = form.querySelector('button[type="submit"]');
-            var originalText = btnSubmit.innerText;
-            btnSubmit.innerText = 'Procesando...';
-            btnSubmit.disabled = true;
-            btnSubmit.classList.add('opacity-75');
-
-            var formData = new FormData(form);
-            formData.append('_captcha', 'false');
-
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            })
-            .then(function(r) { return r.json(); })
-            .then(function() {
-                document.getElementById('successMessage').classList.remove('hidden');
-                form.reset();
-                btnSubmit.innerText = originalText;
-                btnSubmit.disabled = false;
-                btnSubmit.classList.remove('opacity-75');
-                setTimeout(function() {
-                    document.getElementById('successMessage').classList.add('hidden');
-                }, 5000);
-            })
-            .catch(function() {
-                btnSubmit.innerText = originalText;
-                btnSubmit.disabled = false;
-                btnSubmit.classList.remove('opacity-75');
-                alert('No se pudo enviar. Revise su conexión e intente de nuevo.');
-            });
-        });
-
-        // Lógica del Slider Hero
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.slider-dot');
-        let currentSlide = 0;
-        let slideInterval;
-
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.remove('opacity-100', 'z-10');
-                slide.classList.add('opacity-0', 'z-0');
-                if(dots[i]) {
-                    dots[i].classList.remove('bg-accent-500');
-                    dots[i].classList.add('bg-white/50');
-                }
-            });
-            
-            slides[index].classList.remove('opacity-0', 'z-0');
-            slides[index].classList.add('opacity-100', 'z-10');
-            if(dots[index]) {
-                dots[index].classList.remove('bg-white/50');
-                dots[index].classList.add('bg-accent-500');
-            }
-            currentSlide = index;
-        }
-
-        function nextSlide() {
-            let next = (currentSlide + 1) % slides.length;
-            showSlide(next);
-        }
-
-        function prevSlide() {
-            let prev = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(prev);
-        }
-
-        if (slides.length > 0) {
-            const nextBtn = document.getElementById('next-slide');
-            const prevBtn = document.getElementById('prev-slide');
-            
-            if(nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetInterval(); });
-            if(prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetInterval(); });
-
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    showSlide(index);
-                    resetInterval();
-                });
-            });
-
-            function resetInterval() {
-                clearInterval(slideInterval);
-                slideInterval = setInterval(nextSlide, 5000);
-            }
-
-            slideInterval = setInterval(nextSlide, 5000);
-        }
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
