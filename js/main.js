@@ -52,7 +52,7 @@ if (navbar && scrollToTopBtn) {
         formData.append('Fecha', new Date().toLocaleString('es-ES', { dateStyle: 'full', timeStyle: 'medium' }));
         formData.append('URL', window.location.href);
         formData.append('User-Agent', navigator.userAgent);
-        fetch('https://formsubmit.co/ajax/amoretty010292@gmail.com', {
+        fetch('https://formsubmit.co/ajax/dklarestudio@gmail.com', {
             method: 'POST',
             body: formData,
             headers: { 'Accept': 'application/json' }
@@ -62,25 +62,61 @@ if (navbar && scrollToTopBtn) {
     }
 })();
 
-// Formulario de contacto con reCAPTCHA (FormSubmit): envío normal + redirección de vuelta
+// Formulario de contacto: Google reCAPTCHA v2 + envío AJAX a FormSubmit
 (function() {
     var contactForm = document.getElementById('contactForm');
-    var nextInput = document.getElementById('formNextUrl');
-    if (nextInput) {
-        var base = window.location.origin + window.location.pathname;
-        nextInput.value = base + (base.indexOf('?') !== -1 ? '&' : '?') + 'enviado=1';
-    }
-    // Mostrar mensaje de éxito si volvemos desde FormSubmit
-    if (window.location.search.indexOf('enviado=1') !== -1) {
-        var successMessage = document.getElementById('successMessage');
-        if (successMessage) {
-            successMessage.classList.remove('hidden');
-            successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            setTimeout(function() {
-                successMessage.classList.add('hidden');
-            }, 8000);
-            history.replaceState(null, '', window.location.origin + window.location.pathname);
-        }
+    var captchaError = document.getElementById('captchaError');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var form = this;
+            var btnSubmit = form.querySelector('button[type="submit"]');
+            if (!btnSubmit) return;
+
+            var response = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
+            if (!response || response.length === 0) {
+                if (captchaError) captchaError.classList.remove('hidden');
+                return;
+            }
+            if (captchaError) captchaError.classList.add('hidden');
+
+            var originalText = btnSubmit.innerText;
+            btnSubmit.innerText = 'Procesando...';
+            btnSubmit.disabled = true;
+            btnSubmit.classList.add('opacity-75');
+
+            var formData = new FormData(form);
+            formData.append('g-recaptcha-response', response);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(function(r) { return r.json(); })
+            .then(function() {
+                var successMessage = document.getElementById('successMessage');
+                if (successMessage) successMessage.classList.remove('hidden');
+                form.reset();
+                if (typeof grecaptcha !== 'undefined' && typeof grecaptcha.reset === 'function') {
+                    try { grecaptcha.reset(); } catch (err) {}
+                }
+                btnSubmit.innerText = originalText;
+                btnSubmit.disabled = false;
+                btnSubmit.classList.remove('opacity-75');
+                if (successMessage) setTimeout(function() { successMessage.classList.add('hidden'); }, 5000);
+            })
+            .catch(function() {
+                btnSubmit.innerText = originalText;
+                btnSubmit.disabled = false;
+                btnSubmit.classList.remove('opacity-75');
+                if (captchaError) {
+                    captchaError.textContent = 'No se pudo enviar. Revise su conexión e intente de nuevo.';
+                    captchaError.classList.remove('hidden');
+                }
+            });
+        });
     }
 })();
 
